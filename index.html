@@ -249,6 +249,7 @@
     .stack{
       display:flex; flex-wrap:wrap; gap:8px; margin-top: 14px;
     }
+    .exp-list{ display:grid; gap: 14px; }
 
     /* Projects grid */
     .projects{
@@ -300,6 +301,13 @@
       margin-top: 10px;
       font-size: 16px;
       color: var(--muted);
+    }
+
+    .note{
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+      opacity: 0.95;
     }
   </style>
 </head>
@@ -362,14 +370,12 @@
             </ul>
 
             <div class="btn-row">
-              <!-- You will add resume PDF yourself -->
+              <!-- Add your resume PDF file in the same folder and keep this name, or change the filename here -->
               <a class="btn" href="Bharath_Ravula_Resume.pdf" target="_blank" rel="noreferrer">
-                <span>View Resume</span>
-                <span aria-hidden="true">↗</span>
+                <span>View Resume</span><span aria-hidden="true">↗</span>
               </a>
               <a class="btn secondary" href="Bharath_Ravula_Resume.pdf" download>
-                <span>Download PDF</span>
-                <span aria-hidden="true">⭳</span>
+                <span>Download PDF</span><span aria-hidden="true">⭳</span>
               </a>
               <button class="btn" onclick="goTo('contact')">Contact</button>
             </div>
@@ -391,22 +397,10 @@
           </div>
 
           <div class="stats">
-            <div class="stat">
-              <div class="k">Experience</div>
-              <div class="v">8+ Years</div>
-            </div>
-            <div class="stat">
-              <div class="k">Primary Stack</div>
-              <div class="v">Java + React</div>
-            </div>
-            <div class="stat">
-              <div class="k">Cloud</div>
-              <div class="v">AWS / Azure</div>
-            </div>
-            <div class="stat">
-              <div class="k">Architecture</div>
-              <div class="v">Microservices</div>
-            </div>
+            <div class="stat"><div class="k">Experience</div><div class="v">8+ Years</div></div>
+            <div class="stat"><div class="k">Primary Stack</div><div class="v">Java + React</div></div>
+            <div class="stat"><div class="k">Cloud</div><div class="v">AWS / Azure</div></div>
+            <div class="stat"><div class="k">Architecture</div><div class="v">Microservices</div></div>
           </div>
 
         </div>
@@ -437,8 +431,8 @@
         <div class="card reveal">
           <div style="font-weight:700; font-size:18px;">Frontend</div>
           <div class="pill-row">
-            <span class="pill">React 18</span><span class="pill">Redux Toolkit</span><span class="pill">Angular</span>
-            <span class="pill">TypeScript</span><span class="pill">Material UI</span><span class="pill">Tailwind CSS</span>
+            <span class="pill">React.js</span><span class="pill">Redux (Toolkit/Thunk/Saga)</span><span class="pill">Angular</span>
+            <span class="pill">TypeScript</span><span class="pill">Material-UI</span><span class="pill">Tailwind CSS</span>
             <span class="pill">RxJS</span><span class="pill">NgRx</span>
           </div>
         </div>
@@ -446,8 +440,8 @@
         <div class="card reveal">
           <div style="font-weight:700; font-size:18px;">Backend</div>
           <div class="pill-row">
-            <span class="pill">Java 8/11/17</span><span class="pill">Spring Boot</span><span class="pill">Spring Cloud</span>
-            <span class="pill">Spring Security</span><span class="pill">REST APIs</span><span class="pill">GraphQL</span>
+            <span class="pill">Java (8/11/17)</span><span class="pill">Spring Boot</span><span class="pill">Spring Cloud</span>
+            <span class="pill">Spring Security</span><span class="pill">REST</span><span class="pill">GraphQL</span>
           </div>
         </div>
 
@@ -487,84 +481,236 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
+  <!-- EXPERIENCE (ALL) -->
   <section class="section" id="experience">
     <div class="container">
       <h2 class="title reveal">Experience</h2>
 
-      <div class="card reveal" style="margin-bottom:14px;">
-        <div class="row-between">
-          <div>
-            <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
-            <div class="muted" style="font-size:14px;">Honda Motor Company • Los Angeles, CA</div>
+      <div class="exp-list">
+        <!-- Honda -->
+        <div class="card reveal">
+          <div class="row-between">
+            <div>
+              <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
+              <div class="muted" style="font-size:14px;">Honda Motor Company • Los Angeles, CA</div>
+            </div>
+            <div class="muted" style="font-size:14px;">Oct 2023 – Present</div>
           </div>
-          <div class="muted" style="font-size:14px;">Oct 2023 – Present</div>
+          <div class="note">
+            Project: Dealer Management System for vehicle inventory, customer tracking, service scheduling, and sales analytics.
+          </div>
+          <ul class="muted">
+            <li>Built React.js UI using functional components, hooks, Redux Toolkit, React Router, and lazy loading.</li>
+            <li>Developed Spring Boot microservices using Spring Cloud (Eureka, Feign, Config Server) for discovery and centralized config.</li>
+            <li>Implemented Spring Security with JWT, OAuth2, and role-based access control; documented APIs with Swagger/OpenAPI.</li>
+            <li>Designed Kafka event-driven workflows for real-time inventory updates and notifications with reliable processing.</li>
+            <li>Implemented Redis caching for frequently accessed inventory and customer data to improve responsiveness.</li>
+            <li>Deployed containerized services on AWS EKS with Jenkins CI/CD, Docker, Kubernetes, Helm, and monitoring (CloudWatch/Prometheus/Grafana).</li>
+            <li>Practiced TDD with JUnit, Mockito, and TestContainers for unit/integration tests.</li>
+          </ul>
+          <div class="stack">
+            <span class="pill">Java 17</span><span class="pill">Spring Boot</span><span class="pill">Spring Cloud</span>
+            <span class="pill">React</span><span class="pill">Redux Toolkit</span><span class="pill">Kafka</span>
+            <span class="pill">Redis</span><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">AWS EKS</span>
+          </div>
         </div>
-        <ul class="muted">
-          <li>Built React UI using hooks, routing, lazy loading and Redux Toolkit for predictable state management.</li>
-          <li>Designed Spring Boot microservices with service discovery/config and secure APIs (JWT/OAuth2/RBAC).</li>
-          <li>Implemented Kafka event workflows for real-time inventory updates and Redis caching for performance.</li>
-          <li>Deployed on AWS EKS with CI/CD (Jenkins), Docker, Kubernetes and monitoring (CloudWatch/Prometheus/Grafana).</li>
-        </ul>
-        <div class="stack">
-          <span class="pill">Java 17</span><span class="pill">Spring Boot</span><span class="pill">React</span>
-          <span class="pill">Kafka</span><span class="pill">Redis</span><span class="pill">AWS EKS</span>
+
+        <!-- Prime Healthcare -->
+        <div class="card reveal">
+          <div class="row-between">
+            <div>
+              <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
+              <div class="muted" style="font-size:14px;">Prime Healthcare • Ontario, CA</div>
+            </div>
+            <div class="muted" style="font-size:14px;">Aug 2021 – Sep 2023</div>
+          </div>
+          <div class="note">
+            Project: Electronic Health Records (EHR) platform supporting patient data, appointments, claims, and HIPAA workflows.
+          </div>
+          <ul class="muted">
+            <li>Developed Angular applications with lazy-loaded modules, OnPush change detection, and accessible UI patterns.</li>
+            <li>Managed state with NgRx Store/Effects; built selectors and memoized derived data for performance.</li>
+            <li>Built Spring Boot microservices with Spring Cloud components and resilience patterns (Resilience4j).</li>
+            <li>Developed GraphQL APIs to efficiently resolve nested healthcare data and reduce over-fetching.</li>
+            <li>Implemented Spring Security with MFA, LDAP integration, and JWT-based stateless sessions.</li>
+            <li>Engineered async workflows using RabbitMQ and ActiveMQ, including persistence and DLQs.</li>
+            <li>Deployed on Azure AKS with Azure Service Bus and Cosmos DB; containerized with Docker and Kubernetes.</li>
+          </ul>
+          <div class="stack">
+            <span class="pill">Java 11</span><span class="pill">Spring Boot</span><span class="pill">Spring Cloud</span>
+            <span class="pill">Angular</span><span class="pill">NgRx</span><span class="pill">GraphQL</span>
+            <span class="pill">RabbitMQ</span><span class="pill">ActiveMQ</span><span class="pill">PostgreSQL</span><span class="pill">Cassandra</span>
+            <span class="pill">Couchbase</span><span class="pill">Azure AKS</span>
+          </div>
+        </div>
+
+        <!-- Casey's -->
+        <div class="card reveal">
+          <div class="row-between">
+            <div>
+              <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
+              <div class="muted" style="font-size:14px;">Casey&apos;s General Store • Ankeny, IA</div>
+            </div>
+            <div class="muted" style="font-size:14px;">Aug 2021 – Sep 2023</div>
+          </div>
+          <div class="note">
+            Project: Store Operations & Inventory Replenishment platform for near real-time inventory visibility and automated replenishment.
+          </div>
+          <ul class="muted">
+            <li>Built a React operations dashboard for inventory visibility, replenishment status, and exception alerts.</li>
+            <li>Developed Spring Boot microservices for inventory tracking, store rules, recommendations, and notifications.</li>
+            <li>Implemented Kafka event streaming for sales/stock ingestion and replenishment events across services.</li>
+            <li>Designed RabbitMQ workflows for approvals, notifications, retries, and async task execution.</li>
+            <li>Built REST APIs with Swagger/OpenAPI, pagination, validation, and standardized error handling.</li>
+            <li>Implemented Spring Security + JWT for role-based access (store staff, managers, operations users).</li>
+            <li>Used PostgreSQL for transactional data and MongoDB for audit trails/exception logs; deployed on AWS with CI/CD.</li>
+          </ul>
+          <div class="stack">
+            <span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">React</span>
+            <span class="pill">Kafka</span><span class="pill">RabbitMQ</span><span class="pill">PostgreSQL</span><span class="pill">MongoDB</span>
+            <span class="pill">AWS</span><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">Jenkins</span>
+          </div>
+        </div>
+
+        <!-- State Street -->
+        <div class="card reveal">
+          <div class="row-between">
+            <div>
+              <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
+              <div class="muted" style="font-size:14px;">State Street Corporation • Boston, MA</div>
+            </div>
+            <div class="muted" style="font-size:14px;">Aug 2021 – Sep 2023</div>
+          </div>
+          <div class="note">
+            Project: Trade Processing & Settlement platform to track trade lifecycle and exceptions near real time using event-driven microservices.
+          </div>
+          <ul class="muted">
+            <li>Built a React dashboard for trade lifecycle visibility, exception triage, and settlement tracking.</li>
+            <li>Developed Spring Boot microservices for ingestion, validation, settlement orchestration, and workflow processing.</li>
+            <li>Implemented Kafka event streaming with idempotent processing for trade lifecycle events.</li>
+            <li>Designed RabbitMQ exception workflows with retries, DLQs, and priority routing for operations users.</li>
+            <li>Secured APIs with Spring Security + JWT; designed Oracle schemas and optimized SQL queries.</li>
+            <li>Used MongoDB for audit snapshots and exception notes; deployed on Azure AKS with CI/CD and containerized services.</li>
+          </ul>
+          <div class="stack">
+            <span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">React</span>
+            <span class="pill">Kafka</span><span class="pill">RabbitMQ</span><span class="pill">Oracle</span><span class="pill">MongoDB</span>
+            <span class="pill">Azure AKS</span><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">Jenkins</span>
+          </div>
+        </div>
+
+        <!-- 3i Infotech -->
+        <div class="card reveal">
+          <div class="row-between">
+            <div>
+              <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
+              <div class="muted" style="font-size:14px;">3i Infotech Ltd • India</div>
+            </div>
+            <div class="muted" style="font-size:14px;">Aug 2021 – Sep 2023</div>
+          </div>
+          <div class="note">
+            Project: Digital Loan Origination & Underwriting platform to automate loan intake, risk validation, and approvals with event-driven microservices.
+          </div>
+          <ul class="muted">
+            <li>Built Angular UI screens to capture loan applications and display application status for agents/underwriters.</li>
+            <li>Developed Spring Boot microservices for intake, risk validation, underwriting workflow, and approval processing.</li>
+            <li>Implemented Kafka events to track loan application lifecycle across services.</li>
+            <li>Designed RabbitMQ queues for underwriting review, retries, and exception handling for manual approvals.</li>
+            <li>Designed PostgreSQL schemas for applications, decisions, and status history; optimized queries.</li>
+            <li>Secured REST APIs using Spring Security + JWT; automated builds/deployments via Jenkins and GitLab CI/CD.</li>
+          </ul>
+          <div class="stack">
+            <span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">Angular</span>
+            <span class="pill">Kafka</span><span class="pill">RabbitMQ</span><span class="pill">PostgreSQL</span>
+            <span class="pill">AWS</span><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">Jenkins</span>
+          </div>
         </div>
       </div>
 
-      <div class="card reveal">
-        <div class="row-between">
-          <div>
-            <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
-            <div class="muted" style="font-size:14px;">Prime Healthcare • Ontario, CA</div>
-          </div>
-          <div class="muted" style="font-size:14px;">Aug 2021 – Sep 2023</div>
-        </div>
-        <ul class="muted">
-          <li>Developed Angular applications with NgRx and RxJS patterns for efficient state and data flows.</li>
-          <li>Built Spring Boot microservices and GraphQL endpoints for efficient nested data fetching.</li>
-          <li>Implemented Spring Security with MFA and enterprise authentication patterns.</li>
-          <li>Deployed containerized workloads on Azure AKS with messaging and distributed data services.</li>
-        </ul>
-        <div class="stack">
-          <span class="pill">Java 11</span><span class="pill">Spring Boot</span><span class="pill">Angular</span>
-          <span class="pill">NgRx</span><span class="pill">RabbitMQ</span><span class="pill">Azure AKS</span>
-        </div>
-      </div>
-
-      <p class="muted" style="margin:14px 0 0; font-size:13px;">
-        Tip: If your resume includes multiple client projects in the same time period, list them under one employer as “Client Projects” to avoid date conflicts.
+      <p class="note reveal">
+        Note: Your resume text shows overlapping date ranges for multiple companies. If these were client projects under one employer/vendor, you can group them under “Client Projects” to avoid confusion.
       </p>
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS (ALL) -->
   <section class="section" id="projects">
     <div class="container">
       <h2 class="title reveal">Projects</h2>
 
       <div class="projects">
+        <!-- Honda -->
         <div class="card reveal">
-          <div style="font-size:18px; font-weight:800;">Dealer Management System</div>
-          <div class="muted" style="font-size:13px; margin-top:4px;">Inventory • CRM • Service Scheduling • Analytics</div>
+          <div style="font-size:18px; font-weight:800;">Dealer Management System (Honda)</div>
+          <div class="muted" style="font-size:13px; margin-top:4px;">Inventory • CRM • Service Scheduling • Sales Analytics</div>
           <ul class="muted">
-            <li>Microservices with secure REST APIs and real-time updates through Kafka events.</li>
-            <li>React dashboard with reusable components and performance optimizations.</li>
+            <li>Microservices with secure REST APIs and API versioning, pagination, and Swagger/OpenAPI documentation.</li>
+            <li>Kafka-based real-time inventory synchronization and notification workflows.</li>
+            <li>Redis caching for performance; deployments on AWS EKS with CI/CD and monitoring.</li>
           </ul>
           <div class="pill-row">
-            <span class="pill">Spring Boot</span><span class="pill">React</span><span class="pill">Kafka</span><span class="pill">MySQL</span><span class="pill">AWS EKS</span>
+            <span class="pill">Spring Boot</span><span class="pill">React</span><span class="pill">Kafka</span>
+            <span class="pill">Redis</span><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">AWS EKS</span>
           </div>
         </div>
 
+        <!-- Prime -->
         <div class="card reveal">
-          <div style="font-size:18px; font-weight:800;">EHR Platform</div>
-          <div class="muted" style="font-size:13px; margin-top:4px;">Patient Data • Appointments • Claims • HIPAA Workflows</div>
+          <div style="font-size:18px; font-weight:800;">EHR Platform (Prime Healthcare)</div>
+          <div class="muted" style="font-size:13px; margin-top:4px;">Patient Records • Appointments • Claims • HIPAA Workflows</div>
           <ul class="muted">
-            <li>Angular + NgRx state management with strong RxJS error handling patterns.</li>
-            <li>Spring Boot microservices with GraphQL for efficient data queries.</li>
+            <li>Angular + NgRx state management with RxJS reactive patterns and centralized error handling.</li>
+            <li>GraphQL APIs for nested healthcare data with reduced over-fetching.</li>
+            <li>Secure auth with MFA/LDAP/JWT; Azure AKS deployments with messaging and distributed data.</li>
           </ul>
           <div class="pill-row">
-            <span class="pill">Angular</span><span class="pill">Spring Boot</span><span class="pill">GraphQL</span><span class="pill">PostgreSQL</span><span class="pill">Azure AKS</span>
+            <span class="pill">Angular</span><span class="pill">NgRx</span><span class="pill">Spring Boot</span>
+            <span class="pill">GraphQL</span><span class="pill">RabbitMQ</span><span class="pill">PostgreSQL</span><span class="pill">Azure AKS</span>
+          </div>
+        </div>
+
+        <!-- Casey's -->
+        <div class="card reveal">
+          <div style="font-size:18px; font-weight:800;">Inventory Replenishment Platform (Casey&apos;s)</div>
+          <div class="muted" style="font-size:13px; margin-top:4px;">Inventory Visibility • Replenishment Automation • Exceptions</div>
+          <ul class="muted">
+            <li>Event-driven microservices ingesting sales/stock updates and generating replenishment recommendations.</li>
+            <li>React dashboard for real-time visibility, approvals, and exception handling.</li>
+            <li>Kafka streaming + RabbitMQ workflows; PostgreSQL + MongoDB for transactional + audit storage.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">React</span><span class="pill">Spring Boot</span><span class="pill">Kafka</span>
+            <span class="pill">RabbitMQ</span><span class="pill">PostgreSQL</span><span class="pill">MongoDB</span><span class="pill">AWS</span>
+          </div>
+        </div>
+
+        <!-- State Street -->
+        <div class="card reveal">
+          <div style="font-size:18px; font-weight:800;">Trade Processing & Settlement (State Street)</div>
+          <div class="muted" style="font-size:13px; margin-top:4px;">Trade Lifecycle • Exceptions • Settlement Tracking</div>
+          <ul class="muted">
+            <li>Kafka-based lifecycle event streaming with idempotent processing across microservices.</li>
+            <li>React dashboard for operations users to triage exceptions and track settlement status.</li>
+            <li>RabbitMQ retries/DLQs; Oracle for master data + MongoDB audit snapshots; deployed on Azure AKS.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">React</span><span class="pill">Spring Boot</span><span class="pill">Kafka</span>
+            <span class="pill">RabbitMQ</span><span class="pill">Oracle</span><span class="pill">MongoDB</span><span class="pill">Azure AKS</span>
+          </div>
+        </div>
+
+        <!-- 3i Infotech -->
+        <div class="card reveal">
+          <div style="font-size:18px; font-weight:800;">Digital Loan Origination (3i Infotech)</div>
+          <div class="muted" style="font-size:13px; margin-top:4px;">Loan Intake • Risk Validation • Underwriting • Approvals</div>
+          <ul class="muted">
+            <li>Angular screens for application intake and status; secured REST APIs with Spring Security + JWT.</li>
+            <li>Event-driven workflow with Kafka for lifecycle tracking and RabbitMQ queues for underwriting review.</li>
+            <li>PostgreSQL for applications/decisions/status history; CI/CD using Jenkins and GitLab CI/CD.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Angular</span><span class="pill">Spring Boot</span><span class="pill">Kafka</span>
+            <span class="pill">RabbitMQ</span><span class="pill">PostgreSQL</span><span class="pill">AWS</span>
           </div>
         </div>
       </div>
@@ -655,7 +801,7 @@
 
     revealEls.forEach(el => io.observe(el));
 
-    // Active nav highlighting
+    // Active nav highlighting (desktop)
     const navButtons = Array.from(document.querySelectorAll(".nav-links button"));
     const sections = ["home","about","skills","experience","projects","certifications","education","contact"];
 
