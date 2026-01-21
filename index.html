@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bharath Ravula | Java Full Stack Developer</title>
+  <meta name="description" content="Portfolio of Bharath Ravula - Java Full Stack Developer" />
+
+  <style>
+    :root{
+      /* Balanced theme (not too light, not too dark) */
+      --bg: #121826;
+      --bg2:#0f1626;
+      --card: #182235;
+      --card2: rgba(255,255,255,0.03);
+      --text: #e7ecf5;
+      --muted: #aab3c5;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 12px 28px rgba(0,0,0,0.30);
+      --radius: 18px;
+      --radius2: 26px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,0.05), transparent 55%),
+                  radial-gradient(1000px 700px at 85% 20%, rgba(255,255,255,0.04), transparent 55%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ opacity:0.92; }
+
+    .container{
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* Navbar */
+    .nav{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1000;
+      backdrop-filter: blur(10px);
+      background: rgba(18,24,38,0.72);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 14px 0;
+    }
+    .brand{
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+      color:var(--muted);
+      font-size: 14px;
+    }
+    .nav-links button{
+      background:transparent;
+      border:0;
+      color:inherit;
+      cursor:pointer;
+      padding:8px 10px;
+      border-radius: 14px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .nav-links button:hover{
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+    }
+    .nav-links button.active{
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+    }
+
+    .nav-cta{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 16px;
+      cursor:pointer;
+      font-size: 14px;
+      transition: transform .2s ease, background .2s ease;
+      white-space:nowrap;
+    }
+    .nav-cta:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); }
+
+    /* Mobile menu */
+    .menu-btn{
+      display:none;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 16px;
+      cursor:pointer;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px){
+      .nav-links{ display:none; }
+      .menu-btn{ display:block; }
+    }
+
+    .mobile-drawer{
+      display:none;
+      border-top: 1px solid var(--border);
+      padding: 10px 0 14px;
+    }
+    .mobile-drawer.open{ display:block; }
+    .mobile-drawer .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mobile-drawer button{
+      width:100%;
+      text-align:left;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: 16px;
+      cursor:pointer;
+    }
+    .mobile-drawer button:hover{ color: var(--text); }
+
+    /* Sections */
+    section{ scroll-margin-top: 92px; }
+    .spacer{ height: 84px; } /* nav offset */
+    .section{
+      padding: 64px 0;
+    }
+    .title{
+      font-size: 28px;
+      margin:0 0 18px;
+      letter-spacing:-0.02em;
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 18px;
+    }
+    @media (max-width: 900px){
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+
+    .muted{ color: var(--muted); }
+    .pill-row{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;
+    }
+    .pill{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    .btn-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .btn{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 16px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 14px;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); }
+    .btn.secondary{ color: var(--muted); }
+
+    .icon-row{
+      margin-top: 16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 14px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .icon-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 8px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+    }
+    .icon-link:hover{
+      border-color: var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+
+    /* Hero stats */
+    .stats{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat{
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .stat:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.05); }
+    .stat .k{ font-size:12px; color: var(--muted); }
+    .stat .v{ margin-top:4px; font-size:16px; font-weight: 700; }
+
+    /* Lists */
+    ul{ margin: 12px 0 0; padding-left: 18px; }
+    li{ margin: 8px 0; }
+
+    /* Experience cards */
+    .stack{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top: 14px;
+    }
+
+    /* Projects grid */
+    .projects{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 900px){
+      .projects{ grid-template-columns: 1fr; }
+    }
+
+    /* Footer */
+    footer{
+      padding: 36px 0 44px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Animations */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Small utility */
+    .row-between{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 18px;
+      flex-wrap:wrap;
+    }
+    .h1{
+      font-size: 44px;
+      letter-spacing: -0.03em;
+      margin: 0;
+      line-height: 1.08;
+    }
+    @media (max-width: 520px){
+      .h1{ font-size: 36px; }
+    }
+    .subtitle{
+      margin-top: 10px;
+      font-size: 16px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <div class="brand" onclick="goTo('home')">Bharath Ravula</div>
+
+        <nav class="nav-links" id="navLinks">
+          <button data-id="home" onclick="goTo('home')">Home</button>
+          <button data-id="about" onclick="goTo('about')">About</button>
+          <button data-id="skills" onclick="goTo('skills')">Skills</button>
+          <button data-id="experience" onclick="goTo('experience')">Experience</button>
+          <button data-id="projects" onclick="goTo('projects')">Projects</button>
+          <button data-id="certifications" onclick="goTo('certifications')">Certifications</button>
+          <button data-id="education" onclick="goTo('education')">Education</button>
+          <button data-id="contact" onclick="goTo('contact')">Contact</button>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">Menu</button>
+          <button class="nav-cta" onclick="goTo('contact')">Hire Me</button>
+        </div>
+      </div>
+
+      <!-- MOBILE DRAWER -->
+      <div class="mobile-drawer" id="drawer">
+        <div class="grid">
+          <button onclick="goTo('home', true)">Home</button>
+          <button onclick="goTo('about', true)">About</button>
+          <button onclick="goTo('skills', true)">Skills</button>
+          <button onclick="goTo('experience', true)">Experience</button>
+          <button onclick="goTo('projects', true)">Projects</button>
+          <button onclick="goTo('certifications', true)">Certifications</button>
+          <button onclick="goTo('education', true)">Education</button>
+          <button onclick="goTo('contact', true)">Contact</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="spacer"></div>
+
+  <!-- HERO -->
+  <section class="section" id="home">
+    <div class="container">
+      <div class="card reveal">
+        <div class="grid-2">
+          <div>
+            <h1 class="h1">Bharath Ravula</h1>
+            <div class="subtitle">Java Full Stack Developer • Microservices • React/Angular • Cloud/DevOps</div>
+
+            <ul class="muted">
+              <li>8+ years building enterprise applications across automotive, healthcare, finance, and supply chain domains</li>
+              <li>Spring Boot microservices + Kafka/RabbitMQ + secure APIs (JWT/OAuth2)</li>
+              <li>AWS/Azure deployments with CI/CD, Docker, Kubernetes, and monitoring</li>
+            </ul>
+
+            <div class="btn-row">
+              <!-- You will add resume PDF yourself -->
+              <a class="btn" href="Bharath_Ravula_Resume.pdf" target="_blank" rel="noreferrer">
+                <span>View Resume</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a class="btn secondary" href="Bharath_Ravula_Resume.pdf" download>
+                <span>Download PDF</span>
+                <span aria-hidden="true">⭳</span>
+              </a>
+              <button class="btn" onclick="goTo('contact')">Contact</button>
+            </div>
+
+            <div class="icon-row">
+              <a class="icon-link" href="https://www.linkedin.com/in/ravula-bharath-050304222" target="_blank" rel="noreferrer">
+                <span aria-hidden="true">in</span> LinkedIn
+              </a>
+              <a class="icon-link" href="https://github.com/bharath-647" target="_blank" rel="noreferrer">
+                <span aria-hidden="true">⌂</span> GitHub
+              </a>
+              <a class="icon-link" href="mailto:bhanubharath647@gmail.com">
+                <span aria-hidden="true">✉</span> Email
+              </a>
+              <a class="icon-link" href="tel:+19096980062">
+                <span aria-hidden="true">☎</span> +1 (909) 698-0062
+              </a>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="k">Experience</div>
+              <div class="v">8+ Years</div>
+            </div>
+            <div class="stat">
+              <div class="k">Primary Stack</div>
+              <div class="v">Java + React</div>
+            </div>
+            <div class="stat">
+              <div class="k">Cloud</div>
+              <div class="v">AWS / Azure</div>
+            </div>
+            <div class="stat">
+              <div class="k">Architecture</div>
+              <div class="v">Microservices</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="title reveal">About</h2>
+      <div class="card reveal">
+        <p class="muted" style="margin:0;">
+          Results-driven Java Full Stack Developer with 8+ years of experience building scalable enterprise systems.
+          Strong in Spring Boot microservices, event-driven architectures (Kafka/RabbitMQ), and modern UI development using React and Angular.
+          Experienced with cloud-native deployments, CI/CD automation, containerization, and production monitoring.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="title reveal">Skills</h2>
+
+      <div class="projects">
+        <div class="card reveal">
+          <div style="font-weight:700; font-size:18px;">Frontend</div>
+          <div class="pill-row">
+            <span class="pill">React 18</span><span class="pill">Redux Toolkit</span><span class="pill">Angular</span>
+            <span class="pill">TypeScript</span><span class="pill">Material UI</span><span class="pill">Tailwind CSS</span>
+            <span class="pill">RxJS</span><span class="pill">NgRx</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div style="font-weight:700; font-size:18px;">Backend</div>
+          <div class="pill-row">
+            <span class="pill">Java 8/11/17</span><span class="pill">Spring Boot</span><span class="pill">Spring Cloud</span>
+            <span class="pill">Spring Security</span><span class="pill">REST APIs</span><span class="pill">GraphQL</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div style="font-weight:700; font-size:18px;">Messaging & Streaming</div>
+          <div class="pill-row">
+            <span class="pill">Kafka</span><span class="pill">Kafka Streams</span><span class="pill">RabbitMQ</span>
+            <span class="pill">ActiveMQ</span><span class="pill">Azure Service Bus</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div style="font-weight:700; font-size:18px;">Cloud & DevOps</div>
+          <div class="pill-row">
+            <span class="pill">AWS (EKS/RDS/S3/EC2)</span><span class="pill">Azure (AKS/Cosmos DB)</span>
+            <span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">Jenkins</span><span class="pill">GitLab CI/CD</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div style="font-weight:700; font-size:18px;">Databases</div>
+          <div class="pill-row">
+            <span class="pill">MySQL</span><span class="pill">PostgreSQL</span><span class="pill">Oracle</span>
+            <span class="pill">MongoDB</span><span class="pill">Cassandra</span><span class="pill">Redis</span><span class="pill">Couchbase</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div style="font-weight:700; font-size:18px;">Testing & Observability</div>
+          <div class="pill-row">
+            <span class="pill">JUnit</span><span class="pill">Mockito</span><span class="pill">TestContainers</span>
+            <span class="pill">RestAssured</span><span class="pill">ELK</span><span class="pill">Prometheus</span>
+            <span class="pill">Grafana</span><span class="pill">CloudWatch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="container">
+      <h2 class="title reveal">Experience</h2>
+
+      <div class="card reveal" style="margin-bottom:14px;">
+        <div class="row-between">
+          <div>
+            <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
+            <div class="muted" style="font-size:14px;">Honda Motor Company • Los Angeles, CA</div>
+          </div>
+          <div class="muted" style="font-size:14px;">Oct 2023 – Present</div>
+        </div>
+        <ul class="muted">
+          <li>Built React UI using hooks, routing, lazy loading and Redux Toolkit for predictable state management.</li>
+          <li>Designed Spring Boot microservices with service discovery/config and secure APIs (JWT/OAuth2/RBAC).</li>
+          <li>Implemented Kafka event workflows for real-time inventory updates and Redis caching for performance.</li>
+          <li>Deployed on AWS EKS with CI/CD (Jenkins), Docker, Kubernetes and monitoring (CloudWatch/Prometheus/Grafana).</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">Java 17</span><span class="pill">Spring Boot</span><span class="pill">React</span>
+          <span class="pill">Kafka</span><span class="pill">Redis</span><span class="pill">AWS EKS</span>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="row-between">
+          <div>
+            <div style="font-size:20px; font-weight:800;">Java Full Stack Developer</div>
+            <div class="muted" style="font-size:14px;">Prime Healthcare • Ontario, CA</div>
+          </div>
+          <div class="muted" style="font-size:14px;">Aug 2021 – Sep 2023</div>
+        </div>
+        <ul class="muted">
+          <li>Developed Angular applications with NgRx and RxJS patterns for efficient state and data flows.</li>
+          <li>Built Spring Boot microservices and GraphQL endpoints for efficient nested data fetching.</li>
+          <li>Implemented Spring Security with MFA and enterprise authentication patterns.</li>
+          <li>Deployed containerized workloads on Azure AKS with messaging and distributed data services.</li>
+        </ul>
+        <div class="stack">
+          <span class="pill">Java 11</span><span class="pill">Spring Boot</span><span class="pill">Angular</span>
+          <span class="pill">NgRx</span><span class="pill">RabbitMQ</span><span class="pill">Azure AKS</span>
+        </div>
+      </div>
+
+      <p class="muted" style="margin:14px 0 0; font-size:13px;">
+        Tip: If your resume includes multiple client projects in the same time period, list them under one employer as “Client Projects” to avoid date conflicts.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="title reveal">Projects</h2>
+
+      <div class="projects">
+        <div class="card reveal">
+          <div style="font-size:18px; font-weight:800;">Dealer Management System</div>
+          <div class="muted" style="font-size:13px; margin-top:4px;">Inventory • CRM • Service Scheduling • Analytics</div>
+          <ul class="muted">
+            <li>Microservices with secure REST APIs and real-time updates through Kafka events.</li>
+            <li>React dashboard with reusable components and performance optimizations.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Spring Boot</span><span class="pill">React</span><span class="pill">Kafka</span><span class="pill">MySQL</span><span class="pill">AWS EKS</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div style="font-size:18px; font-weight:800;">EHR Platform</div>
+          <div class="muted" style="font-size:13px; margin-top:4px;">Patient Data • Appointments • Claims • HIPAA Workflows</div>
+          <ul class="muted">
+            <li>Angular + NgRx state management with strong RxJS error handling patterns.</li>
+            <li>Spring Boot microservices with GraphQL for efficient data queries.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Angular</span><span class="pill">Spring Boot</span><span class="pill">GraphQL</span><span class="pill">PostgreSQL</span><span class="pill">Azure AKS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <h2 class="title reveal">Certifications</h2>
+      <div class="card reveal">
+        <div style="font-size:18px; font-weight:800;">AWS Certified Solutions Architect – Associate</div>
+        <div class="muted" style="margin-top:6px;">Issued: January 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION (NO YEARS) -->
+  <section class="section" id="education">
+    <div class="container">
+      <h2 class="title reveal">Education</h2>
+
+      <div class="projects">
+        <div class="card reveal">
+          <div style="font-weight:800;">Master of Science — Computer Science</div>
+          <div class="muted" style="margin-top:6px;">California State University, San Bernardino</div>
+        </div>
+
+        <div class="card reveal">
+          <div style="font-weight:800;">Bachelor of Technology — Computer Science and Engineering</div>
+          <div class="muted" style="margin-top:6px;">Jawaharlal Nehru Technological University, Hyderabad</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="title reveal">Contact</h2>
+      <div class="card reveal">
+        <div class="muted" style="display:grid; gap:10px;">
+          <a href="mailto:bhanubharath647@gmail.com">bhanubharath647@gmail.com</a>
+          <a href="tel:+19096980062">+1 (909) 698-0062</a>
+          <a href="https://www.linkedin.com/in/ravula-bharath-050304222" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://github.com/bharath-647" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Bharath Ravula
+    </div>
+  </footer>
+
+  <script>
+    // Smooth navigation + close drawer on mobile
+    function goTo(id, closeDrawer){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({ behavior: "smooth" });
+      if(closeDrawer) {
+        drawer.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const drawer = document.getElementById("drawer");
+
+    menuBtn?.addEventListener("click", () => {
+      const open = drawer.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    // Reveal-on-scroll animation
+    const revealEls = Array.from(document.querySelectorAll(".reveal"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if(e.isIntersecting) e.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => io.observe(el));
+
+    // Active nav highlighting
+    const navButtons = Array.from(document.querySelectorAll(".nav-links button"));
+    const sections = ["home","about","skills","experience","projects","certifications","education","contact"];
+
+    function setActive(id){
+      navButtons.forEach(b => {
+        b.classList.toggle("active", b.getAttribute("data-id") === id);
+      });
+    }
+
+    function onScroll(){
+      let current = "home";
+      for(const id of sections){
+        const el = document.getElementById(id);
+        if(!el) continue;
+        const rect = el.getBoundingClientRect();
+        if(rect.top <= 120) current = id;
+      }
+      setActive(current);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+</html>
