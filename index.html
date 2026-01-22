@@ -57,11 +57,42 @@
       gap:16px;
       padding: 14px 0;
     }
+
+    /* Brand with photo/icon */
+    .brand-wrap{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .avatar{
+      width:34px;
+      height:34px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .avatar-fallback{
+      font-size:14px;
+      color: var(--muted);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
     .brand{
       font-weight: 700;
       letter-spacing: -0.02em;
-      cursor:pointer;
-      white-space:nowrap;
     }
 
     .nav-links{
@@ -91,19 +122,6 @@
       border: 1px solid var(--border);
     }
 
-    .nav-cta{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      padding: 10px 14px;
-      border-radius: 16px;
-      cursor:pointer;
-      font-size: 14px;
-      transition: transform .2s ease, background .2s ease;
-      white-space:nowrap;
-    }
-    .nav-cta:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); }
-
     /* Mobile menu */
     .menu-btn{
       display:none;
@@ -114,7 +132,9 @@
       border-radius: 16px;
       cursor:pointer;
       font-size: 14px;
+      transition: transform .2s ease, background .2s ease;
     }
+    .menu-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); }
 
     @media (max-width: 860px){
       .nav-links{ display:none; }
@@ -317,7 +337,21 @@
   <header class="nav">
     <div class="container">
       <div class="nav-inner">
-        <div class="brand" onclick="goTo('home')">Bharath Ravula</div>
+        <!-- Brand with photo/icon (top-left) -->
+        <div class="brand-wrap" onclick="goTo('home')">
+          <!-- Option 1 (recommended): put your photo file in same folder and name it profile.jpg
+               Then the image will show automatically. -->
+          <div class="avatar" title="Profile photo">
+            <img
+              src="profile.jpg"
+              alt="Bharath Ravula"
+              onerror="this.style.display='none'; this.parentElement.querySelector('.avatar-fallback').style.display='grid';"
+            />
+            <!-- Fallback icon if photo not found -->
+            <div class="avatar-fallback" style="display:none; place-items:center; width:100%; height:100%;">BR</div>
+          </div>
+          <div class="brand">Bharath Ravula</div>
+        </div>
 
         <nav class="nav-links" id="navLinks">
           <button data-id="home" onclick="goTo('home')">Home</button>
@@ -330,9 +364,9 @@
           <button data-id="contact" onclick="goTo('contact')">Contact</button>
         </nav>
 
+        <!-- Removed "Hire Me" button; keeping Menu for mobile -->
         <div style="display:flex; gap:10px; align-items:center;">
           <button class="menu-btn" id="menuBtn" aria-label="Open menu">Menu</button>
-          <button class="nav-cta" onclick="goTo('contact')">Hire Me</button>
         </div>
       </div>
 
@@ -639,12 +673,11 @@
       <h2 class="title reveal">Projects</h2>
 
       <div class="projects">
-        <!-- Honda -->
         <div class="card reveal">
           <div style="font-size:18px; font-weight:800;">Dealer Management System (Honda)</div>
           <div class="muted" style="font-size:13px; margin-top:4px;">Inventory • CRM • Service Scheduling • Sales Analytics</div>
           <ul class="muted">
-            <li>Microservices with secure REST APIs and API versioning, pagination, and Swagger/OpenAPI documentation.</li>
+            <li>Microservices with secure REST APIs, pagination, and Swagger/OpenAPI documentation.</li>
             <li>Kafka-based real-time inventory synchronization and notification workflows.</li>
             <li>Redis caching for performance; deployments on AWS EKS with CI/CD and monitoring.</li>
           </ul>
@@ -654,12 +687,11 @@
           </div>
         </div>
 
-        <!-- Prime -->
         <div class="card reveal">
           <div style="font-size:18px; font-weight:800;">EHR Platform (Prime Healthcare)</div>
           <div class="muted" style="font-size:13px; margin-top:4px;">Patient Records • Appointments • Claims • HIPAA Workflows</div>
           <ul class="muted">
-            <li>Angular + NgRx state management with RxJS reactive patterns and centralized error handling.</li>
+            <li>Angular + NgRx state management with RxJS patterns and centralized error handling.</li>
             <li>GraphQL APIs for nested healthcare data with reduced over-fetching.</li>
             <li>Secure auth with MFA/LDAP/JWT; Azure AKS deployments with messaging and distributed data.</li>
           </ul>
@@ -669,7 +701,6 @@
           </div>
         </div>
 
-        <!-- Casey's -->
         <div class="card reveal">
           <div style="font-size:18px; font-weight:800;">Inventory Replenishment Platform (Casey&apos;s)</div>
           <div class="muted" style="font-size:13px; margin-top:4px;">Inventory Visibility • Replenishment Automation • Exceptions</div>
@@ -684,14 +715,13 @@
           </div>
         </div>
 
-        <!-- State Street -->
         <div class="card reveal">
           <div style="font-size:18px; font-weight:800;">Trade Processing & Settlement (State Street)</div>
           <div class="muted" style="font-size:13px; margin-top:4px;">Trade Lifecycle • Exceptions • Settlement Tracking</div>
           <ul class="muted">
             <li>Kafka-based lifecycle event streaming with idempotent processing across microservices.</li>
             <li>React dashboard for operations users to triage exceptions and track settlement status.</li>
-            <li>RabbitMQ retries/DLQs; Oracle for master data + MongoDB audit snapshots; deployed on Azure AKS.</li>
+            <li>RabbitMQ retries/DLQs; Oracle + MongoDB; deployed on Azure AKS.</li>
           </ul>
           <div class="pill-row">
             <span class="pill">React</span><span class="pill">Spring Boot</span><span class="pill">Kafka</span>
@@ -699,14 +729,13 @@
           </div>
         </div>
 
-        <!-- 3i Infotech -->
         <div class="card reveal">
           <div style="font-size:18px; font-weight:800;">Digital Loan Origination (3i Infotech)</div>
           <div class="muted" style="font-size:13px; margin-top:4px;">Loan Intake • Risk Validation • Underwriting • Approvals</div>
           <ul class="muted">
             <li>Angular screens for application intake and status; secured REST APIs with Spring Security + JWT.</li>
-            <li>Event-driven workflow with Kafka for lifecycle tracking and RabbitMQ queues for underwriting review.</li>
-            <li>PostgreSQL for applications/decisions/status history; CI/CD using Jenkins and GitLab CI/CD.</li>
+            <li>Kafka for lifecycle tracking and RabbitMQ for underwriting queues with retries/exception handling.</li>
+            <li>PostgreSQL persistence; CI/CD using Jenkins and GitLab CI/CD.</li>
           </ul>
           <div class="pill-row">
             <span class="pill">Angular</span><span class="pill">Spring Boot</span><span class="pill">Kafka</span>
